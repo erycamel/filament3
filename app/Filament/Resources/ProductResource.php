@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\ProductResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Models\Brand;
 
 class ProductResource extends Resource
 {
@@ -93,6 +94,31 @@ class ProductResource extends Resource
                 Forms\Components\Section::make('Associations')->schema([
                     Forms\Components\Select::make('brand_id')
                     ->relationship('brand', 'name')
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('name')
+                        ->required()
+                        ->live(onBlur: true)
+                        ->unique(Brand::class, 'name', ignoreRecord: true)
+                        ->afterStateUpdated(function(string $operation, $state, Forms\set $set){
+                            if ($operation !== 'create') {
+                                return;
+                            }
+                            $set('slug', Str::slug($state));
+                        }),
+                        Forms\Components\TextInput::make('slug')
+                            // ->disabled()
+                            ->dehydrated()
+                            ->required()
+                            ->unique(),
+                        Forms\Components\TextInput::make('url')
+                            ->label('Website URL')
+                            ->required()
+                            ->unique()
+                            ->columnSpan('full'),
+                        Forms\Components\MarkdownEditor::make('description')
+                            ->columnSpan('full')
+                    ])
+                    ->native(false),
                 ])->collapsible(),
                 // End Section 2.2 Schema
             ]),
@@ -120,6 +146,7 @@ class ProductResource extends Resource
                 ->boolean(),
             Tables\Columns\TextColumn::make('price')
                 ->sortable()
+                ->money()
                 ->toggleable(),
             Tables\Columns\TextColumn::make('quantity')
                 ->sortable()
@@ -127,7 +154,15 @@ class ProductResource extends Resource
             Tables\Columns\TextColumn::make('published_at')
                 ->sortable()
                 ->date(),
-            Tables\Columns\TextColumn::make('type')
+            Tables\Columns\TextColumn::make('type'),
+            Tables\Columns\TextColumn::make('created_at')
+                ->dateTime('M d Y h:i A')
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('updated_at')
+                ->dateTime('M d Y h:i A')
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
         ])
         ->filters([
             Tables\Filters\TernaryFilter::make('is_visible')

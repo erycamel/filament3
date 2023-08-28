@@ -94,6 +94,14 @@ class BrandResource extends Resource
                 Tables\Columns\TextColumn::make('updated_at')
                     ->sortable()
                     ->date(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime('M d Y h:i A')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime('M d Y h:i A')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
