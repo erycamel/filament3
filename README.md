@@ -2,6 +2,8 @@ git config --global user.name "Ery Camel"
 git config --global user.email "erycamel@gmail.com"
 ssh-keygen -t ed25519 -C "erycamel@gmail.com"
 
+php artisan storage:link
+
 php artisan vendor:publish --tag=filament-config
 
 php artisan make:model Category -m
@@ -27,3 +29,11 @@ php artisan optimize:clear
 php artisan config:clear
 php artisan migrate
 => Add the necessary trait to your User model
+
+
+
+
+
+php artisan make:filament-resource CategoryNilai --simple
+php artisan make:filament-resource Periode --simple
+php artisan make:filament-resource Teacher
