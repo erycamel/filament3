@@ -17,9 +17,9 @@ class UserSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'erycamel@gmail.com',
             'password' => bcrypt('password'),
-            'role' => 'admin',
-            'status' => 'active',
-            'phone' => '082276520028'
+            // 'role' => 'admin',
+            // 'status' => 'active',
+            // 'phone' => '082276520028'
             // "is_active" => 1
         ]);
         // You can also assign multi ple roles at once
@@ -30,9 +30,9 @@ class UserSeeder extends Seeder
             'name' => 'Demo User',
             'email' => 'demo@deltamas-toyota.co.id',
             'password' => bcrypt('password'),
-            'role' => 'user',
-            'status' => 'active',
-            'phone' => '082160457737'
+            // 'role' => 'user',
+            // 'status' => 'active',
+            // 'phone' => '082160457737'
             // "is_active" => 1
         ]);
         // $user->assignRole(['user']);
@@ -41,9 +41,9 @@ class UserSeeder extends Seeder
             'name' => 'User 01',
             'email' => 'user@deltamas-toyota.co.id',
             'password' => bcrypt('password'),
-            'role' => 'user',
-            'status' => 'active',
-            'phone' => '082276115802'
+            // 'role' => 'user',
+            // 'status' => 'active',
+            // 'phone' => '082276115802'
             // "is_active" => 0
         ]);
         // $user->assignRole('writer');
