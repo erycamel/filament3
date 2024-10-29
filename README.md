@@ -8,3 +8,6 @@ php artisan filament:optimize-clear
 php artisan vendor:publish --tag=filament-config
 php artisan vendor:publish --tag=filament-views
 "# filament3" 
+
+composer update
+php artisan filament:upgrade
