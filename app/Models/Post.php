@@ -15,10 +15,18 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'category_id',
-        'image',
+        'thumbnail',
         'title',
-        'content'
+        'color',
+        'slug',
+        'category_id',
+        'content',
+        'tags',
+        'published'
+    ];
+
+    protected $casts = [
+        'tags' => 'array',
     ];
 
     /**
