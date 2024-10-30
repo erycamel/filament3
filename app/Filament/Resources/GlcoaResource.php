@@ -14,6 +14,7 @@ use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+Use App\Filament\Exports\GlcoaExporter; 
 
 class GlcoaResource extends Resource
 {
@@ -46,6 +47,9 @@ class GlcoaResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+            ])
+            ->headerActions([
+                Tables\Actions\ExportAction::make()->exporter(GlcoaExporter::class),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
