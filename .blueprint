@@ -1,0 +1,24 @@
+created:
+    - database/factories/ConferenceFactory.php
+    - database/factories/VenueFactory.php
+    - database/factories/SpeakerFactory.php
+    - database/factories/TalkFactory.php
+    - database/migrations/2024_10_31_070739_create_conferences_table.php
+    - database/migrations/2024_10_31_070740_create_venues_table.php
+    - database/migrations/2024_10_31_070741_create_speakers_table.php
+    - database/migrations/2024_10_31_070742_create_talks_table.php
+    - database/migrations/2024_10_31_070743_create_conference_speaker_table.php
+    - database/migrations/2024_10_31_070744_create_conference_talk_table.php
+    - app/Models/Conference.php
+    - app/Models/Venue.php
+    - app/Models/Speaker.php
+    - app/Models/Talk.php
+models:
+    Category: { name: string, slug: string }
+    Glcoa: { pk: 'integer unsigned autoincrement', noper: "string:10 nullable default:''", gnoper: "string:10 nullable default:''", naper: "string:50 nullable default:''", gd: 'tinyinteger unsigned nullable', level: 'tinyinteger unsigned nullable', goper: 'tinyinteger unsigned nullable', tipe: "char:1 nullable default:''", tgl: "date nullable default:'0000-00-00'", aktif: 'tinyinteger unsigned nullable', opsi: boolean, bbal1: 'decimal:16,2 nullable default:0.00', debet1: 'decimal:16,2 nullable default:0.00', kredit1: 'decimal:16,2 nullable default:0.00', bbal2: 'decimal:16,2 nullable default:0.00', debet2: 'decimal:16,2 nullable default:0.00', kredit2: 'decimal:16,2 nullable default:0.00', bbal3: 'decimal:16,2 nullable default:0.00', debet3: 'decimal:16,2 nullable default:0.00', kredit3: 'decimal:16,2 nullable default:0.00', bbal4: 'decimal:16,2 nullable default:0.00', debet4: 'decimal:16,2 nullable default:0.00', kredit4: 'decimal:16,2 nullable default:0.00', bbal5: 'decimal:16,2 nullable default:0.00', debet5: 'decimal:16,2 nullable default:0.00', kredit5: 'decimal:16,2 nullable default:0.00', bbal6: 'decimal:16,2 nullable default:0.00', debet6: 'decimal:16,2 nullable default:0.00', kredit6: 'decimal:16,2 nullable default:0.00', bbal7: 'decimal:16,2 nullable default:0.00', debet7: 'decimal:16,2 nullable default:0.00', kredit7: 'decimal:16,2 nullable default:0.00', bbal8: 'decimal:16,2 nullable default:0.00', debet8: 'decimal:16,2 nullable default:0.00', kredit8: 'decimal:16,2 nullable default:0.00', bbal9: 'decimal:16,2 nullable default:0.00', kredit9: 'decimal:16,2 nullable default:0.00', debet9: 'decimal:16,2 nullable default:0.00', bbal10: 'decimal:16,2 nullable default:0.00', debet10: 'decimal:16,2 nullable default:0.00', kredit10: 'decimal:16,2 nullable default:0.00', bbal11: 'decimal:16,2 nullable default:0.00', debet11: 'decimal:16,2 nullable default:0.00', kredit11: 'decimal:16,2 nullable default:0.00', bbal12: 'decimal:16,2 nullable default:0.00', debet12: 'decimal:16,2 nullable default:0.00', kredit12: 'decimal:16,2 nullable default:0.00', bbally: 'decimal:16,2 nullable default:0.00', bally: 'decimal:16,2 nullable default:0.00', adjly: 'decimal:16,2 nullable default:0.00', bbalytd: 'decimal:16,2 nullable default:0.00', balytd: 'decimal:16,2 nullable default:0.00', adjytd: 'decimal:16,2 nullable default:0.00', bbal: 'decimal:18,2 nullable default:0.00', bal: 'decimal:18,2 nullable default:0.00', adj: 'decimal:18,2 nullable default:0.00' }
+    Post: { thumbnail: 'string nullable default:NULL', title: string, color: string, slug: string, category_id: 'biginteger unsigned', content: 'text nullable default:NULL', tags: 'longtext nullable default:NULL', published: boolean }
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable default:NULL', password: string, remember_token: 'string:100 nullable default:NULL' }
+    Conference: { name: string, description: string, start_date: datetime, end_date: datetime, status: string, region: string, venue_id: 'unsignedInteger nullable', relationships: { belongsTo: Venue, belongsToMany: 'Speaker, Talk' } }
+    Venue: { name: string, city: string, country: string, postal_code: string, relationships: { hasMany: Conference } }
+    Speaker: { name: string, email: string, bio: text, twitter_handle: string, relationships: { belongsToMany: Conference } }
+    Talk: { title: string, abstract: text, speaker_id: unsignedInteger, relationships: { belongsTo: Speaker, belongsToMany: Conference } }

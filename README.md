@@ -16,3 +16,7 @@ composer update
 php artisan filament:upgrade
 
 php artisan make:filament-exporter Glcoa
+
+php artisan make:filament-resource Conference --generate
+
+php artisan blueprint:new
